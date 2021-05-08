@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>滞纳金</title>
+		<link rel="stylesheet" href="./css/mobileSelect.css">
+		<link rel="stylesheet" href="./css/style.css">
+		<style type="text/css">
+			.formItme span {
+				width: 70px;
+				flex-shrink: 0;
+				color: #555;
+				font-size: 14px;
+			}
+
+			.yjsf {
+				font-size: 14px;
+				padding: 5px 15px;
+				color: #2F69F8;
+			}
+
+			.ruleContain {
+				padding-top: 50px;
+				overflow: auto;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="formdata">
+				<div class="formItme je">
+					<span style="width: 140px;">滞纳的税款金额</span>
+					<input class="lsfprice" placeholder="金额" oninput="num(this)" />
+					<b>元</b>
+				</div>
+				<div class="formItme">
+					<span style="flex-shrink: 0;width: 150px;">滞纳金计算的起始日期</span>
+					<input class="rzrq" id="trigger1" readonly="readonly" placeholder="请选择" />
+					<svg t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
+						<path
+							d="M782.222222 512L307.2 1012.622222c-14.222222 11.377778-39.822222 14.222222-51.2 2.844445-8.533333-8.533333-14.222222-28.444444 2.844444-45.511111l440.888889-455.111112L258.844444 56.888889S241.777778 28.444444 264.533333 14.222222c19.911111-14.222222 34.133333-8.533333 42.666667 0L782.222222 512z"
+							fill="#C4C1CD" p-id="1131"></path>
+					</svg>
+				</div>
+				<div class="formItme">
+					<span style="flex-shrink: 0;width: 150px;">滞纳金计算的截止时间</span>
+					<input class="rzrq" id="trigger2" readonly="readonly" placeholder="请选择" />
+					<svg t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
+						<path
+							d="M782.222222 512L307.2 1012.622222c-14.222222 11.377778-39.822222 14.222222-51.2 2.844445-8.533333-8.533333-14.222222-28.444444 2.844444-45.511111l440.888889-455.111112L258.844444 56.888889S241.777778 28.444444 264.533333 14.222222c19.911111-14.222222 34.133333-8.533333 42.666667 0L782.222222 512z"
+							fill="#C4C1CD" p-id="1131"></path>
+					</svg>
+				</div>
+			</div>
+			<div class="resultbtn">
+				<div class="reset">重置</div>
+				<div class="count">计算</div>
+			</div>
+			<div class="title">计算结果：</div>
+			<div class="result">
+				<div class="resultItem">
+					<span class="pro">滞纳天数</span>
+					<span class="num fr alldays">天</span>
+				</div>
+				<div class="resultItem">
+					<span class="pro">应加征滞纳金</span>
+					<span class="num fr bcj">元</span>
+				</div>
+				<div class="formItme iconRate">
+					<span class="pro">计算过程</span>
+					<span class="num"
+						style="display: inline-block;width: 100%;flex-shrink: 1;text-align: right;padding-right: 10px;color: #999;">展开</span>
+					<svg style="" t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
+						<path
+							d="M782.222222 512L307.2 1012.622222c-14.222222 11.377778-39.822222 14.222222-51.2 2.844445-8.533333-8.533333-14.222222-28.444444 2.844444-45.511111l440.888889-455.111112L258.844444 56.888889S241.777778 28.444444 264.533333 14.222222c19.911111-14.222222 34.133333-8.533333 42.666667 0L782.222222 512z"
+							fill="#C4C1CD" p-id="1131"></path>
+					</svg>
+				</div>
+				<div class="progress">
+					未计算
+				</div>
+			</div>
+
+		</div>
+		<div class="warn">
+			<div></div>
+		</div>
+		<div id="popup">
+			<span class="close category-desc-toggle">
+				<svg t="1619587224353" class="icon" viewBox="0 0 1024 1024" version="1.1"
+					xmlns="http://www.w3.org/2000/svg" p-id="2003" width="16" height="16">
+					<path
+						d="M571.01312 523.776l311.3472-311.35232c15.7184-15.71328 15.7184-41.6256 0-57.344l-1.69472-1.69984c-15.7184-15.71328-41.6256-15.71328-57.34912 0l-311.3472 311.77728-311.35232-311.77728c-15.7184-15.71328-41.63072-15.71328-57.344 0l-1.69984 1.69984a40.0128 40.0128 0 0 0 0 57.344L452.92544 523.776l-311.35232 311.35744c-15.71328 15.71328-15.71328 41.63072 0 57.33888l1.69984 1.69984c15.71328 15.7184 41.6256 15.7184 57.344 0l311.35232-311.35232 311.3472 311.35232c15.72352 15.7184 41.63072 15.7184 57.34912 0l1.69472-1.69984c15.7184-15.70816 15.7184-41.6256 0-57.33888l-311.3472-311.35744z"
+						p-id="2004" fill="#666666"></path>
+				</svg>
+			</span>
+			<p class="ruleContain">
+
+
+			</p>
+		</div>
+	</body>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+	<script src="js/rule.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mobileSelect.js"></script>
+	<script type="text/javascript">
+		let beginYear = 1980;
+		let thisDate = new Date();
+		let thisYear = thisDate.getFullYear();
+		let thisM = thisDate.getMonth();
+		let thisD = thisDate.getDate() - 1;
+		let data = setTimeDateSelete('2050-12-31', beginYear)
+		new MobileSelect({
+			trigger: '#trigger1',
+			title: '日期选择',
+			position: [thisYear - beginYear - 1, thisM, thisD],
+			wheels: [{
+				data
+			}],
+			transitionEnd: function(indexArr, data) {},
+			callback: function(indexArr, data) {
+				this.trigger.value = data[0].value + '-' + data[1].value + '-' + data[2].value
+			}
+		});
+
+		new MobileSelect({
+			trigger: '#trigger2',
+			title: '日期选择',
+			position: [thisYear - beginYear - 1, thisM, thisD],
+			wheels: [{
+				data
+			}],
+			transitionEnd: function(indexArr, data) {},
+			callback: function(indexArr, data) {
+				this.trigger.value = data[0].value + '-' + data[1].value + '-' + data[2].value
+			}
+		});
+		$('.iconRate').on('click', function() {
+			$(this).toggleClass('active');
+			if ($(this).hasClass('active')) {
+				$(this).find('.num').text('收起')
+				$('.progress').animate({
+					height: '200px'
+				}, 200)
+			} else {
+				$(this).find('.num').text('展开')
+				$('.progress').animate({
+					height: 0
+				}, 200)
+			}
+		})
+
+		function countFun() {
+			// 比较 离职日期 和 入职日期 的 差值
+			let calculate = comFun.calculate($('#trigger1').val(), $('#trigger2').val())
+			if (!$('.lsfprice').val()) {
+				showTost('请输入滞纳的税款金额')
+				return
+			}
+			if (!$('#trigger1').val()) {
+				showTost('请选择滞纳金计算的起始日期')
+				return
+			}
+			if (!$('#trigger2').val()) {
+				showTost('请选择滞纳金计算的截止时间')
+				return
+			}
+			if (comFun.getDays($('#trigger1').val(), $('#trigger2').val()) <= 0) {
+				showTost('不足一天，没有产生滞纳金')
+				return
+			}
+			// if (calculate < 1) {
+			// 	showTost('不足一天，没有产生滞纳金')
+			// 	return
+			// }
+
+
+
+			// 判断是否在2001 -05 -01 前
+
+			let t010501 = new Date('2001-5-01').getTime();
+
+			// 滞纳天数
+			let allDays = comFun.getDays($('#trigger1').val(), $('#trigger2').val())
+			let allmoney = null;
+			let gs = ''
+			if (new Date($('#trigger2').val()).getTime() < t010501) { // 2001/05/01 之前
+				console.log(1);
+				allmoney = Math.round(allDays * $('.lsfprice').val() * 0.02)
+				gs = `${allDays}*${$('.lsfprice').val()}* 0.02`
+			} else if (new Date($('#trigger1').val()).getTime() >= t010501) { // 2001/05/01 之后
+				console.log(2);
+				allmoney = Math.round(allDays * $('.lsfprice').val() * 0.005)
+				gs = `${allDays}*${$('.lsfprice').val()}* 0.005`
+			} else {
+				console.log(3);
+				let beforeDays = comFun.getDays($('#trigger1').val(), '2001-05-01')
+				let afterDatys = comFun.getDays('2001-05-01', $('#trigger2').val())
+				allmoney = Math.round(beforeDays * $('.lsfprice').val() * 0.02 + afterDatys * $('.lsfprice').val() * 0.005)
+				gs = `(${beforeDays}* 0.02+${afterDatys}* 0.005)*${$('.lsfprice').val()}`
+			}
+			$('.alldays').text(allDays + '天')
+			$('.bcj').text(allmoney + '元')
+			$('.progress').html(
+				`
+			滞纳的税款金额：${allmoney}元；<br/>
+			
+			滞纳天数：${allDays}天；<br/>
+			
+			应加征滞纳金：${allmoney}元；<br/>
+			
+			公式：${allmoney} = ${gs}<br/>
+			
+			`
+			)
+		}
+
+		function resetFun() {
+			$('#trigger1,#trigger2,#trigger3,.lsfprice,.progress,.bcj,.alldays').val('')
+			$('.bcj').text('元');
+			$('.alldays').text('天');
+			$('.progress').text('未计算');
+		}
+		$('.count').on('click', countFun)
+		$('.reset').on('click', resetFun)
+
+
+
+
+
+		$('.yjsf').on('click', function() {
+			$('#popup').animate({
+				top: 0
+			}, 200)
+			$(".category-desc-toggle").toggleClass("rotate45");
+
+		})
+		$(".category-desc-toggle").on('click', function() {
+			$('#popup').animate({
+				top: '100vh'
+			}, 200)
+			$(".category-desc-toggle").toggleClass("rotate45");
+		})
+	</script>
+</html>

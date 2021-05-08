@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+			<title>补偿金</title>
+		<link rel="stylesheet" href="./css/mobileSelect.css">
+		<link rel="stylesheet" href="./css/style.css">
+		<style type="text/css">
+			.formItme span {
+				width: 70px;
+				flex-shrink: 0;
+				color: #555;
+				font-size: 14px;
+			}
+
+			.yjsf {
+				font-size: 14px;
+				padding: 5px 15px;
+				color: #2F69F8;
+			}
+
+			.ruleContain {
+				padding-top: 50px;
+				overflow: auto;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<!-- <h1>经济赔偿金</h1> -->
+			<div class="formdata">
+				<div class="formItme">
+					<span>所在城市</span>
+					<input class="szcs" readonly="readonly" placeholder="请选择" id="trigger3" />
+					<svg t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
+						<path
+							d="M782.222222 512L307.2 1012.622222c-14.222222 11.377778-39.822222 14.222222-51.2 2.844445-8.533333-8.533333-14.222222-28.444444 2.844444-45.511111l440.888889-455.111112L258.844444 56.888889S241.777778 28.444444 264.533333 14.222222c19.911111-14.222222 34.133333-8.533333 42.666667 0L782.222222 512z"
+							fill="#C4C1CD" p-id="1131"></path>
+					</svg>
+				</div>
+				<div class="formItme">
+					<span>入职日期</span>
+					<input class="rzrq" id="trigger1" readonly="readonly" placeholder="请选择" />
+					<svg t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
+						<path
+							d="M782.222222 512L307.2 1012.622222c-14.222222 11.377778-39.822222 14.222222-51.2 2.844445-8.533333-8.533333-14.222222-28.444444 2.844444-45.511111l440.888889-455.111112L258.844444 56.888889S241.777778 28.444444 264.533333 14.222222c19.911111-14.222222 34.133333-8.533333 42.666667 0L782.222222 512z"
+							fill="#C4C1CD" p-id="1131"></path>
+					</svg>
+				</div>
+				<div class="formItme">
+					<span>离职日期</span>
+					<input class="rzrq" id="trigger2" readonly="readonly" placeholder="请选择" />
+					<svg t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
+						<path
+							d="M782.222222 512L307.2 1012.622222c-14.222222 11.377778-39.822222 14.222222-51.2 2.844445-8.533333-8.533333-14.222222-28.444444 2.844444-45.511111l440.888889-455.111112L258.844444 56.888889S241.777778 28.444444 264.533333 14.222222c19.911111-14.222222 34.133333-8.533333 42.666667 0L782.222222 512z"
+							fill="#C4C1CD" p-id="1131"></path>
+					</svg>
+				</div>
+				<div class="formItme">
+					<span>离职原因</span>
+					<select class="leaveReson">
+						<option value="">请选择</option>
+						<option value="2">单位未按约提供劳动保护或劳动条件</option>
+						<option value="3">单位未足额支付劳动报酬或社会保险费</option>
+						<option value="4">单位提出协商解除</option>
+						<option value="5">医疗期满解除</option>
+						<option value="6">不能胜任工作经培训或调整后仍不能胜任的解除</option>
+						<option value="7">客观情况变化解除</option>
+						<option value="8">经济性裁员</option>
+						<option value="9">合同期满单位不续签</option>
+						<option value="10">单位破产或被吊销营业执照等</option>
+						<option value="11">其他</option>
+					</select>
+					<svg t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
+						<path
+							d="M782.222222 512L307.2 1012.622222c-14.222222 11.377778-39.822222 14.222222-51.2 2.844445-8.533333-8.533333-14.222222-28.444444 2.844444-45.511111l440.888889-455.111112L258.844444 56.888889S241.777778 28.444444 264.533333 14.222222c19.911111-14.222222 34.133333-8.533333 42.666667 0L782.222222 512z"
+							fill="#C4C1CD" p-id="1131"></path>
+					</svg>
+				</div>
+				<div class="formItme je">
+					<span style="width: 140px;">最近12个月平均工资</span>
+					<input class="lsfprice" placeholder="金额" oninput="num(this)" />
+					<b>元</b>
+				</div>
+			</div>
+			<div class="resultbtn">
+				<div class="reset">重置</div>
+				<div class="count">计算</div>
+			</div>
+			<div class="title">计算结果：</div>
+			<div class="result">
+				<div class="resultItem">
+					<span class="pro">经济补偿金（含税）</span>
+					<span class="num fr bcj">元</span>
+				</div>
+				<div class="formItme iconRate">
+					<span class="pro">计算过程</span>
+					<span class="num"
+						style="display: inline-block;width: 100%;flex-shrink: 1;text-align: right;padding-right: 10px;color: #999;">展开</span>
+					<svg style="" t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
+						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
+						<path
+							d="M782.222222 512L307.2 1012.622222c-14.222222 11.377778-39.822222 14.222222-51.2 2.844445-8.533333-8.533333-14.222222-28.444444 2.844444-45.511111l440.888889-455.111112L258.844444 56.888889S241.777778 28.444444 264.533333 14.222222c19.911111-14.222222 34.133333-8.533333 42.666667 0L782.222222 512z"
+							fill="#C4C1CD" p-id="1131"></path>
+					</svg>
+				</div>
+				<div class="progress">
+					未计算
+				</div>
+			</div>
+			<div class="yjsf">
+				查看经济补偿金相关法规 >
+			</div>
+		</div>
+		<div class="warn">
+			<div></div>
+		</div>
+		<div id="popup">
+			<span class="close category-desc-toggle">
+				<svg t="1619587224353" class="icon" viewBox="0 0 1024 1024" version="1.1"
+					xmlns="http://www.w3.org/2000/svg" p-id="2003" width="16" height="16">
+					<path
+						d="M571.01312 523.776l311.3472-311.35232c15.7184-15.71328 15.7184-41.6256 0-57.344l-1.69472-1.69984c-15.7184-15.71328-41.6256-15.71328-57.34912 0l-311.3472 311.77728-311.35232-311.77728c-15.7184-15.71328-41.63072-15.71328-57.344 0l-1.69984 1.69984a40.0128 40.0128 0 0 0 0 57.344L452.92544 523.776l-311.35232 311.35744c-15.71328 15.71328-15.71328 41.63072 0 57.33888l1.69984 1.69984c15.71328 15.7184 41.6256 15.7184 57.344 0l311.35232-311.35232 311.3472 311.35232c15.72352 15.7184 41.63072 15.7184 57.34912 0l1.69472-1.69984c15.7184-15.70816 15.7184-41.6256 0-57.33888l-311.3472-311.35744z"
+						p-id="2004" fill="#666666"></path>
+				</svg>
+			</span>
+			<p class="ruleContain">
+				第二十六条　下列劳动合同无效或者部分无效：<br />
+				(一)以欺诈、胁迫的手段或者乘人之危，使对方在违背真实意思的情况下订立或者变更劳动合同的;<br />
+				(二)用人单位免除自己的法定责任、排除劳动者权利的;<br />
+				(三)违反法律、行政法规强制性规定的。<br />
+				第三十六条　用人单位与劳动者协商一致，可以解除劳动合同。<br />
+				第三十八条　用人单位有下列情形之一的，劳动者可以解除劳动合同：<br />
+				(一)未按照劳动合同约定提供劳动保护或者劳动条件的;<br />
+				(二)未及时足额支付劳动报酬的;<br />
+				(三)未依法为劳动者缴纳社会保险费的;<br />
+				(四)用人单位的规章制度违反法律、法规的规定，损害劳动者权益的;<br />
+				(五)因本法第二十六条第一款规定的情形致使劳动合同无效的;<br />
+				(六)法律、行政法规规定劳动者可以解除劳动合同的其他情形。<br />
+				用人单位以暴力、威胁或者非法限制人身自由的手段强迫劳动者劳动的，或者用人单位违章指挥、强令冒险作业危及劳动者人身安全的，劳动者可以立即解除劳动合同，不需事先告知用人单位。<br />
+				第四十条　有下列情形之一的，用人单位提前三十日以书面形式通知劳动者本人或者额外支付劳动者一个月工资后，可以解除劳动合同：<br />
+				(一)劳动者患病或者非因工负伤，在规定的医疗期满后不能从事原工作，也不能从事由用人单位另行安排的工作的;<br />
+				(二)用人单位免除自己的法定责任、排除劳动者权利的;<br />
+				(二)劳动者不能胜任工作，经过培训或者调整工作岗位，仍不能胜任工作的;<br />
+				(三)劳动合同订立时所依据的客观情况发生重大变化，致使劳动合同无法履行，经用人单位与劳动者协商，未能就变更劳动合同内容达成协议的。<br />
+				第四十四条　有下列情形之一的，劳动合同终止：<br />
+				（一）劳动合同期满的;<br />
+				(四)用人单位被依法宣告破产的;<br />
+				(五)用人单位被吊销营业执照、责令关闭、撤销或者用人单位决定提前解散的;<br />
+				第四十六条　有下列情形之一的，用人单位应当向劳动者支付经济补偿：<br />
+				(一)劳动者依照本法第三十八条规定解除劳动合同的;<br />
+				(二)用人单位依照本法第三十六条规定向劳动者提出解除劳动合同并与劳动者协商一致解除劳动合同的;<br />
+				(三)用人单位依照本法第四十条规定解除劳动合同的;<br />
+				(四)用人单位依照本法第四十一条第一款规定解除劳动合同的;<br />
+				(五)除用人单位维持或者提高劳动合同约定条件续订劳动合同，劳动者不同意续订的情形外，依照本法第四十四条第一项规定终止固定期限劳动合同的;<br />
+				(六)依照本法第四十四条第四项、第五项规定终止劳动合同的;<br />
+				(七)法律、行政法规规定的其他情形。<br />
+				第四十七条　经济补偿按劳动者在本单位工作的年限，每满一年支付一个月工资的标准向劳动者支付。六个月以上不满一年的，按一年计算;不满六个月的，向劳动者支付半个月工资的经济补偿。<br />
+				劳动者月工资高于用人单位所在直辖市、设区的市级人民政府公布的本地区上年度职工月平均工资三倍的，向其支付经济补偿的标准按职工月平均工资三倍的数额支付，向其支付经济补偿的年限最高不超过十二年。<br />
+				本条所称月工资是指劳动者在劳动合同解除或者终止前十二个月的平均工资。<br />
+
+			</p>
+		</div>
+	</body>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+	<script src="js/data.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/rule.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/area.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mobileSelect.js"></script>
+	<script type="text/javascript">
+		let minAvg = null;
+		var mobileSelect3 = new MobileSelect({
+			trigger: '#trigger3',
+			title: '城市选择',
+			wheels: [{
+				data: areadata
+			}],
+			position: [0, 0],
+			callback: function(indexArr, data) {
+				minAvg = areadata[indexArr[0]]['childs'][indexArr[1]]['num']
+				if (data[0]['value'] === data[1]['value']) {
+					$('#trigger3').val(data[0]['value'])
+				} else {
+					$('#trigger3').val(data[0]['value'] + ' ' + data[1]['value'])
+				}
+			}
+		});
+
+		let beginYear = 1980;
+		let thisDate = new Date();
+		let thisYear = thisDate.getFullYear();
+		let thisM = thisDate.getMonth();
+		let thisD = thisDate.getDate() - 1;
+		let data = setTimeDateSelete('2050-12-31', beginYear)
+		new MobileSelect({
+			trigger: '#trigger1',
+			title: '日期选择',
+			position: [thisYear - beginYear - 1, thisM, thisD],
+			wheels: [{
+				data
+			}],
+			transitionEnd: function(indexArr, data) {},
+			callback: function(indexArr, data) {
+				$("#trigger1").val(data[0].value + '-' + data[1].value + '-' + data[2].value)
+			}
+		});
+
+		new MobileSelect({
+			trigger: '#trigger2',
+			title: '日期选择',
+			position: [thisYear - beginYear - 1, thisM, thisD],
+			wheels: [{
+				data
+			}],
+			transitionEnd: function(indexArr, data) {},
+			callback: function(indexArr, data) {
+				$("#trigger2").val(data[0].value + '-' + data[1].value + '-' + data[2].value)
+			}
+		});
+		$('.iconRate').on('click', function() {
+			$(this).toggleClass('active');
+			if ($(this).hasClass('active')) {
+				$(this).find('.num').text('收起')
+				$('.progress').animate({
+					height: '200px'
+				}, 200)
+			} else {
+				$(this).find('.num').text('展开')
+				$('.progress').animate({
+					height: 0
+				}, 200)
+			}
+		})
+
+		function countFun() {
+			// 比较 离职日期 和 入职日期 的 差值
+			let calculate = comFun.calculate($('#trigger1').val(), $('#trigger2').val())
+			if (!$('#trigger3').val()) {
+				showTost('请选择所在城市')
+				return
+			}
+			if (!$('#trigger1').val()) {
+				showTost('请选择入职日期')
+				return
+			}
+			if (!$('#trigger2').val()) {
+				showTost('请选择离职日期')
+				return
+			}
+			if (calculate < 0) {
+				showTost('离职日期不能小于入职日期')
+				return
+			}
+			if (calculate < 1) {
+				showTost('不足一月，没有补偿金')
+				return
+			}
+			if (!$('.leaveReson').val()) {
+				showTost('请选择离职原因')
+				return
+			}
+			if (!$('.lsfprice').val()) {
+				showTost('请输入12月平均工资')
+				return
+			}
+
+			// minAvg // 小于3倍 
+		
+			// 工作年限 计算
+			//六个月以上不满一年的，按一年计算;不满六个月的，向劳动者支付半个月工资
+			let comYear = Math.ceil(calculate / 12 * 2) / 2;
+			comYear = comYear > 12 ? 12 : comYear
+			let comMoney = $('.lsfprice').val();
+			if ($('.lsfprice').val() >= minAvg * 3) {
+				comMoney = minAvg * 3
+			}
+
+			$('.bcj').text(comYear * comMoney + '元')
+			$('.progress').html(
+				`
+			经济补偿金 = 工作年限 *月工资<br/>
+			
+			(工作年限满6个月不满1年的，按照1年计算;不满6个月按半年计算)<br/>
+			
+			工作年限满12年的按12年计算<br/>
+			
+			工作年限：${comYear}年<br/>
+			
+			工资：${comMoney}元<br/>
+			
+			经济补偿金：${comYear*comMoney}元<br/>
+			
+			公式：${comYear*comMoney} = ${comYear} * ${comMoney}<br/>
+			
+			`
+			)
+		}
+
+		function resetFun() {
+			$('#trigger1,#trigger2,#trigger3,.leaveReson,.lsfprice').val('')
+			$('.bcj').text('元');
+			$('.progress').text('未计算');
+			minAvg = null
+		}
+		$('.count').on('click', countFun)
+		$('.reset').on('click', resetFun)
+
+	
+
+
+
+		$('.yjsf').on('click', function() {
+			$('#popup').animate({
+				top: 0
+			}, 200)
+			$(".category-desc-toggle").toggleClass("rotate45");
+
+		})
+		$(".category-desc-toggle").on('click', function() {
+			$('#popup').animate({
+				top: '100vh'
+			}, 200)
+			$(".category-desc-toggle").toggleClass("rotate45");
+		})
+	</script>
+</html>
