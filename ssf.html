@@ -12,7 +12,9 @@
 			<div class="formdata">
 				<div class="formItme">
 					<span>类型</span>
-					<select class="types"></select>
+					<select class="types">
+						<option value="">请选择</option>
+					</select>
 					<svg t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
 						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
 						<path
@@ -22,7 +24,7 @@
 				</div>
 				<div class="formItme">
 					<span>依据</span>
-					<span class="yjsf">安徽律师收费标准</span>
+					<span class="yjsf">诉讼费缴纳标准</span>
 					<svg t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
 						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
 						<path
@@ -36,8 +38,25 @@
 					<b>元</b>
 				</div>
 			</div>
-			<div class="title">计算结果：</div>
-			<div class="result"></div>
+			<div class="title"></div>
+			<div class="result">
+				<div class="resultItem">
+					<span class="pro">受理费</span>
+					<span class="num shouli fr">元</span>
+				</div>
+			</div>
+			<div class="result">
+				<div class="resultItem">
+					<span class="pro">保全费</span>
+					<span class="num baoquan fr">元</span>
+				</div>
+			</div>
+			<div class="result">
+				<div class="resultItem">
+					<span class="pro">执行费</span>
+					<span class="num zhixing fr">元</span>
+				</div>
+			</div>
 			<div id="popup">
 				<span class="close category-desc-toggle">
 					<svg t="1619587224353" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -56,25 +75,44 @@
 	<script src="js/rule.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/area.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		let ssftypes = [
-			{'name':'财产案件','is_property':0,'price':1},
-			{'name':'离婚案件','is_property':1,'price':1},
-			{'name':'人格权案件','is_property':1,'price':1},
-			{'name':'知识产权案件','is_property':1,'price':1},
-			{'name':'普通非财产案件','is_property':0,'price':0},
-			{'name':'劳动争议案件','is_property':0,'price':0},
-			{'name':'行政案件','is_property':0,'price':0},
-			{'name':'商标 专利 海事行政案件','is_property':0,'price':0},
-			{'name':'管辖权异议不成立案件','is_property':0,'price':0}
-		]
-	
+		$('.types').on('change', function() {
+			let ind = $(this).val();
+			let result = lawsuit(ssftypes[ind].type, $('.lsfprice').val(), ssftypes[ind].is_property)
+			for (let key in result) {
+				$('.' + key).text(result[key] + ' 元')
+				console.log($('.' + key));
+			}
+		})
+
+		$('.lsfprice').on('input', function() {
+			let ind = $('.types').val();
+			let result = lawsuit(ssftypes[ind].type, $(this).val(), ssftypes[ind].is_property)
+			for (let key in result) {
+				$('.' + key).text(result[key] + ' 元')
+				console.log($('.' + key));
+			}
+		})
+
+
 		function setoption(sel, arr, name) {
-			let typeoption = arr.map((res,ind) => {
+			let typeoption = arr.map((res, ind) => {
 				return `<option value='${ind}'>${res[name]}</option>`
 			})
 			$('.' + sel).append(typeoption.join(''))
 		}
 		setoption('types', ssftypes, 'name')
+		$('.yjsf').on('click', function() {
+			$('#popup').animate({
+				top: 0
+			}, 200)
+			$(".category-desc-toggle").toggleClass("rotate45");
 
+		})
+		$(".category-desc-toggle").on('click', function() {
+			$('#popup').animate({
+				top: '100vh'
+			}, 200)
+			$(".category-desc-toggle").toggleClass("rotate45");
+		})
 	</script>
 </html>

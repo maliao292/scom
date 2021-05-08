@@ -153,8 +153,62 @@ let citys = [{
 citys.sort(function(a, b) {
 	return (a.py + '').localeCompare(b.py + '')
 })
-
-
+// 诉讼费 类型
+let ssftypes = [{
+				'name': '财产案件',
+				'is_property': 0,
+				'price': 1,
+				'type':1
+			},
+			{
+				'name': '离婚案件',
+				'is_property': 1,
+				'price': 1,
+				'type':3
+			},
+			{
+				'name': '人格权案件',
+				'is_property': 1,
+				'price': 1,
+				'type':4
+			},
+			{
+				'name': '知识产权案件',
+				'is_property': 1,
+				'price': 1,
+				'type':5
+			},
+			{
+				'name': '普通非财产案件',
+				'is_property': 0,
+				'price': 0,
+				'type':2
+			},
+			{
+				'name': '劳动争议案件',
+				'is_property': 0,
+				'price': 0,
+				'type':6
+			},
+			{
+				'name': '行政案件',
+				'is_property': 0,
+				'price': 0,
+				'type':6
+			},
+			{
+				'name': '商标 专利 海事行政案件',
+				'is_property': 0,
+				'price': 0,
+				'type':8
+			},
+			{
+				'name': '管辖权异议不成立案件',
+				'is_property': 0,
+				'price': 0,
+				'type':9
+			}
+		]
 
 let lsfRule = [{
 	city: '北京',
