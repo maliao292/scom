@@ -4,26 +4,15 @@
 		<meta charset="utf-8" />
 		<meta name="viewport"
 			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>律师费计算</title>
+		<title>诉讼费</title>
 		<link rel="stylesheet" href="./css/style.css">
 	</head>
 	<body>
 		<div class="container">
-			<!-- <h1>律师费计算</h1> -->
 			<div class="formdata">
 				<div class="formItme">
 					<span>类型</span>
 					<select class="types"></select>
-					<svg t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
-						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
-						<path
-							d="M782.222222 512L307.2 1012.622222c-14.222222 11.377778-39.822222 14.222222-51.2 2.844445-8.533333-8.533333-14.222222-28.444444 2.844444-45.511111l440.888889-455.111112L258.844444 56.888889S241.777778 28.444444 264.533333 14.222222c19.911111-14.222222 34.133333-8.533333 42.666667 0L782.222222 512z"
-							fill="#C4C1CD" p-id="1131"></path>
-					</svg>
-				</div>
-				<div class="formItme">
-					<span>省份</span>
-					<select class="citys"></select>
 					<svg t="1619516711920" class="icon" viewBox="0 0 1024 1024" version="1.1"
 						xmlns="http://www.w3.org/2000/svg" p-id="1130" width="32" height="32">
 						<path
@@ -67,103 +56,25 @@
 	<script src="js/rule.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/area.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		$('.title,.result').hide();
-
-		function setoption(sel, arr, name, value) {
-			let typeoption = arr.map(res => {
-				return `<option value='${res[value]}'>${res[name]}</option>`
+		let ssftypes = [
+			{'name':'财产案件','is_property':0,'price':1},
+			{'name':'离婚案件','is_property':1,'price':1},
+			{'name':'人格权案件','is_property':1,'price':1},
+			{'name':'知识产权案件','is_property':1,'price':1},
+			{'name':'普通非财产案件','is_property':0,'price':0},
+			{'name':'劳动争议案件','is_property':0,'price':0},
+			{'name':'行政案件','is_property':0,'price':0},
+			{'name':'商标 专利 海事行政案件','is_property':0,'price':0},
+			{'name':'管辖权异议不成立案件','is_property':0,'price':0}
+		]
+	
+		function setoption(sel, arr, name) {
+			let typeoption = arr.map((res,ind) => {
+				return `<option value='${ind}'>${res[name]}</option>`
 			})
 			$('.' + sel).append(typeoption.join(''))
 		}
-		setoption('types', types, 'name', 'id')
-		setoption('citys', citys, 'city_name', 'city_id')
+		setoption('types', ssftypes, 'name')
 
-
-		$('.lsfjs').on('click', function() {
-			// ($cityid,$typeid,$price){
-			let arr = getlawyerfee($('.citys').val(), $('.types').val(), $('.lsfprice').val())
-			$('#lsf').text(JSON.stringify(arr))
-		})
-
-		function showPrice(data) {
-			console.log(data);
-			let fragment = null;
-			if (typeof data === 'object') {
-				fragment = `
-					<div class="resultItem">
-						<span class="pro">侦查阶段</span>
-						<span class="num fr">${data.zc}元</span>
-					</div>
-					<div class="resultItem">
-						<span class="pro">审查起诉阶段</span>
-						<span class="num fr">${data.sc}元</span>
-					</div>
-					<div class="resultItem">
-						<span class="pro">审判阶段</span>
-						<span class="num fr">${data.sp}元</span>
-					</div>
-				`
-			} else {
-				fragment = `
-					<div class="resultItem">
-						<span class="pro">律师费</span>
-						<span class="num fr">${data}元</span>
-					</div>
-				`
-			}
-			$('.result').html(fragment);
-			$('.title,.result').show();
-		}
-
-		function getResult() {
-			let type = $('.types').val();
-			if (type == 2) {
-				$('.je').hide()
-			} else {
-				$('.je').show()
-				if (!$('.lsfprice').val()) {
-					$('.title,.result').hide();
-					return
-				}
-				$('.je').show()
-			}
-			let arr = getlawyerfee($('.citys').val(), $('.types').val(), $('.lsfprice').val())
-			showPrice(arr)
-		}
-		//citys
-		$('.types').on('change', getResult)
-
-		$('.citys').on('change', function() {
-			getResult()
-			let selectCity = citys.filter(res => {
-				return res.city_id == $(this).val()
-			})
-			$('.yjsf').html(`${selectCity[0]['city_name']}律师收费标准`)
-
-		})
-
-		$('.lsfprice').on('input', getResult)
-
-		$('.yjsf').on('click', function() {
-			let selectCity = citys.filter(res => {
-				return res.city_id == $('.citys').val()
-			})
-			let cityName = selectCity[0]['city_name'];
-			let cityrule = lsfRule.filter(res => {
-				return res.city == cityName
-			})
-			$('.ruleContain').html(`<p>${cityrule[0].city}</p>` + cityrule[0].text)
-			$('#popup').animate({
-				top: 0
-			}, 200)
-			$(".category-desc-toggle").toggleClass("rotate45");
-
-		})
-		$(".category-desc-toggle").on('click', function() {
-			$('#popup').animate({
-				top: '100vh'
-			}, 200)
-			$(".category-desc-toggle").toggleClass("rotate45");
-		})
 	</script>
 </html>
