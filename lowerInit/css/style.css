@@ -1,0 +1,484 @@
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+fieldset,
+img {
+	border: 0;
+}
+
+ul,
+ol,
+li {
+	list-style: none;
+	font-family: 'Microsoft YaHei';
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var,
+optgroup {
+	font-style: normal;
+	font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+
+abbr,
+acronym {
+	border: 0;
+	font-variant: normal;
+}
+
+input,
+button,
+textarea,
+select,
+optgroup,
+option {
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	background-color: #fff;
+	border: none;
+}
+
+code,
+kbd,
+samp,
+tt {
+	font-size: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/*@purpose To enable resizing for IE */
+/*@branch For IE6-Win, IE7-Win */
+input,
+button,
+textarea {
+	*font-size: 100%;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table,
+tr,
+td {
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0;
+	padding: 0;
+}
+
+caption,
+th {
+	text-align: left;
+}
+
+sup,
+sub {
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+/* remember to highlight anchors and inserts somehow! */
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+/**Common Css**/
+.fr {
+	float: right;
+	*display: inline;
+}
+
+.fl {
+	float: left;
+	*display: inline;
+}
+
+/*文本超出显示省略号*/
+.ehn,
+.otw,
+.tow {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+/*清除浮动*/
+.clearfix {
+	clear: both;
+	*zoom: 1;
+}
+
+.clearfix:after {
+	display: block;
+	clear: both;
+	content: "\0020";
+	visibility: hidden;
+	height: 0;
+}
+.container{
+	height: 100vh;
+	background-color: #F8F8F8;
+	padding-top: 15px;
+}
+.formItme{
+	display: flex;
+	padding: 0 15px;
+}
+.formdata{
+	background-color: #fff;
+}
+.formItme{
+	display: flex;
+	justify-content: space-between;
+	height: 45px;
+	align-items: center;
+	border-bottom: 1px solid #F8F8F8;
+}
+.formItme select,.formItme input{
+	/* width: 100%; */
+	flex-shrink: 0;
+	color: #555;
+	font-size: 14px;
+	text-align: right;
+}
+
+.formItme span{
+	width: 100%;
+	flex-shrink: 1;
+	color: #555;
+	font-size: 14px;
+}
+.formItme b{
+	font-weight: 400;
+	color: #555;
+	font-size: 14px;
+	margin-left: 15px;
+}
+.formItme svg{
+	width: 14px;
+}
+
+.title{
+	font-size: 16px;
+	color: #2F69F8;
+	padding: 15px 15px 10px;
+}
+.result{
+	background: #fff;
+}
+span.yjsf{
+	display: inline-block;
+	width: 100%;
+	flex-shrink: 1;
+	height: 100%;
+	line-height: 44px;
+}
+.resultItem{
+	padding: 0 15px;
+	height: 45px;
+	line-height: 45px;
+	border-bottom: 1px solid #F8F8F8;
+}
+.resultItem .pro,.resultItem .num{
+	flex-shrink: 0;
+	color: #555;
+	font-size: 14px;
+}
+
+#popup{
+	position: fixed;
+	background-color: #fff;
+	top: 100vh;
+	width: 100vw;
+	height: 100vh;
+}
+#popup .close{
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	padding: 10px;
+}
+.rotate45 { 
+    -ms-transform: rotate(720deg);
+    -webkit-transform: rotate(720deg);
+    -o-transform: rotate(720deg); 
+    -moz-transform: rotate(720deg); 
+    transform: rotate(720deg);
+}
+.category-desc-toggle { 
+    -moz-transition: all .3s; 
+    -webkit-transition: all .3s; 
+    -o-transition: all .3s; 
+    transition: all .3s;
+}
+.ruleContain{
+	font-size: 14px;
+	color: #444;
+}
+.ruleContain p:first-child{
+	margin-bottom: 10px;
+}
+.warn{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 10;
+}
+.warn>div{
+	padding: 5px 20px;
+	border-radius: 5px;
+	min-width: 70px;
+	background-color: rgba(0,0,0,0.6);
+	color: #fff;
+	font-size: 14px;
+}
+
+.resultbtn{
+	display: flex;
+	justify-content: space-around;
+	background-color: #fff;
+	padding: 15px 0;
+}
+.resultbtn>div{
+	width: 30%;
+	text-align: center;
+	border-radius: 16px;
+	line-height: 30px;
+	height: 32px;
+	border: 1px solid #999;
+	color: #999;
+	font-size: 14px;
+	
+}
+.resultbtn>div:last-child{
+	color: #fff;
+	background: linear-gradient(to left, #2FA2F8, #2F69F8);;
+}
+.progress {
+	overflow: hidden;
+	height: 0;
+	background-color:#fff;
+	padding: 0 15px;
+	font-size: 14px;
+	color: #777;
+	line-height: 1.6;
+}
+.iconRate svg{
+	transform: rotate(-90deg);
+	transition: transform .2s;
+}
+
+.iconRate.active svg{
+	transform: rotate(90deg);
+}
+select {
+  /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+
+  /*很关键：将默认的select选择框样式清除*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  /* 在选择框的最右侧中间显示小箭头图片
+  background: url("https://raw.githubusercontent.com/ourjs/static/gh-pages/2015/arrow.png") no-repeat scroll right center transparent; */
+
+
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding-right: 14px;
+}
+
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
+.required::before{
+	content: '*';
+	color: #f00;
+	margin-right: 3px;
+	vertical-align: middle;
+}
+
+.flexwap{
+	flex-wrap: wrap;
+	height: auto;
+}
+.formItme textarea{
+	width: 100%;
+	font-size: 14px;
+	padding: 15px;
+	resize: none;
+}
+.formItme .statistics{
+	width: 100%;
+	text-align: right;
+}
+.formItme .uploadCon{
+		width: 96px;
+		height: 96px;
+		position: relative;
+}
+
+.formItme .uploadCon input[type='file']{
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.formItme .uploadCon img{
+	width: 100%;
+	height: 100%;
+}
+
+.picsCon{
+	padding-top: 5px;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+#popup{
+	background-color: #ececec;
+	padding: 50px 15px 0;
+}
+.goodList{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding-top: 15px;
+	height: calc(100vh - 90px);
+	overflow: auto;
+}
+.goodList span{
+	width: 45%;
+	background-color: #fff;
+	text-align: center;
+	margin-bottom: 10px;
+	height: 38px;
+	line-height: 38px;
+	border-radius: 4px;
+	position: relative;
+	box-sizing: border-box;
+}
+.goodList span.active{
+	border: 1px solid #2F69F8;
+	color: #2F69F8;
+}
+
+.goodList span.active:before{
+	content: '√';
+	width: 14px;
+	height: 14px;
+	line-height: 15px;
+	border-radius: 8px;
+	background-image: linear-gradient(to right, #2F69F8 , #2FA2F8);
+	color: #fff;
+	text-align: center;
+	display: inline-block;
+	border: 1px solid #0062CC;
+	position: absolute;
+	left: 10px;
+	top: 11px;
+}
+.picCon{
+	width: 96px;
+	height: 96px;
+	position: relative;
+	margin-right: 15px;
+	box-shadow: 0 0 5px #ccc;
+	margin-bottom: 10px;
+	
+}
+.picCon .pic_s{
+	width: 100%;
+	height: 100%;
+}
+.delIcon{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 26px;
+}
