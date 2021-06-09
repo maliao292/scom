@@ -191,15 +191,12 @@
 			let allmoney = null;
 			let gs = ''
 			if (new Date($('#trigger2').val()).getTime() < t010501) { // 2001/05/01 之前
-				console.log(1);
 				allmoney = Math.round(allDays * $('.lsfprice').val() * 0.02)
 				gs = `${allDays}*${$('.lsfprice').val()}* 0.02`
 			} else if (new Date($('#trigger1').val()).getTime() >= t010501) { // 2001/05/01 之后
-				console.log(2);
 				allmoney = Math.round(allDays * $('.lsfprice').val() * 0.005)
 				gs = `${allDays}*${$('.lsfprice').val()}* 0.005`
 			} else {
-				console.log(3);
 				let beforeDays = comFun.getDays($('#trigger1').val(), '2001-05-01')
 				let afterDatys = comFun.getDays('2001-05-01', $('#trigger2').val())
 				allmoney = Math.round(beforeDays * $('.lsfprice').val() * 0.02 + afterDatys * $('.lsfprice').val() * 0.005)

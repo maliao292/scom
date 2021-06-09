@@ -282,7 +282,7 @@
 				comMoney = minAvg * 3
 			}
 
-			$('.bcj').text(comYear * comMoney + '元')
+			$('.bcj').text((comYear * comMoney).toFixed(2) + '元')
 			$('.progress').html(
 				`
 			经济补偿金 = 工作年限 *月工资<br/>
@@ -295,9 +295,9 @@
 			
 			工资：${comMoney}元<br/>
 			
-			经济补偿金：${comYear*comMoney}元<br/>
+			经济补偿金：${(comYear * comMoney).toFixed(2)}元<br/>
 			
-			公式：${comYear*comMoney} = ${comYear} * ${comMoney}<br/>
+			公式：${(comYear * comMoney).toFixed(2)} = ${comYear} * ${comMoney}<br/>
 			
 			`
 			)

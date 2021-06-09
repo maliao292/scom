@@ -156,7 +156,7 @@ citys.sort(function(a, b) {
 // 诉讼费 类型
 let ssftypes = [{
 				'name': '财产案件',
-				'is_property': 0,
+				'is_property': 1,
 				'price': 1,
 				'type':1
 			},
@@ -194,7 +194,7 @@ let ssftypes = [{
 				'name': '行政案件',
 				'is_property': 0,
 				'price': 0,
-				'type':6
+				'type':7
 			},
 			{
 				'name': '商标 专利 海事行政案件',

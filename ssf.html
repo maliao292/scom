@@ -155,16 +155,15 @@
 			let result = lawsuit(ssftypes[ind].type, $('.lsfprice').val(), ssftypes[ind].is_property)
 			for (let key in result) {
 				$('.' + key).text(result[key] + ' 元')
-				console.log($('.' + key));
 			}
 		})
 
 		$('.lsfprice').on('input', function() {
+			num(this) 
 			let ind = $('.types').val();
 			let result = lawsuit(ssftypes[ind].type, $(this).val(), ssftypes[ind].is_property)
 			for (let key in result) {
 				$('.' + key).text(result[key] + ' 元')
-				console.log($('.' + key));
 			}
 		})
 
