@@ -168,7 +168,7 @@ function getnext(rules, money, min) {
 	let $result = null;
 	// 按照 标的 筛选 money 所在全额费用的区间
 	let newrule = rules.filter(rule => {
-		return rule[0] && (rule[0] <= money / 10000)
+		return rule[0] && (rule[0] < money / 10000)
 	})
 	newrule.forEach((res, ind) => {
 		// 如果费用 定值区间 如： 5000-30000
@@ -189,16 +189,14 @@ function getnext(rules, money, min) {
 	// 计算过的 金额
 	let comedMoney = 0;
 	comedMoney = length === 0 ? 0 : newrule[length - 1][0]
-
-
-	if (rules[0].length === 3) {
+	if (rules[0].length === 3) { // 费用区间
 		if (rules[length][1] > 100) {
-			$result = (lower + rules[length][1]) + '-' + (upper + rules[length][2])
+			$result = number_format(lower + rules[length][1]) + '-' + number_format(upper + rules[length][2])
 		} else {
 			if (!rules[length][2]) {
-				$result = (lower + (money - comedMoney * 10000) * rules[length][1] / 100)
+				$result = number_format(lower + (money - comedMoney * 10000) * rules[length][1] / 100)
 			} else {
-				$result = (lower + (money - comedMoney * 10000) * rules[length][1] / 100) + '-' + (upper + (money -
+				$result = number_format(lower + (money - comedMoney * 10000) * rules[length][1] / 100) + '-' + number_format(upper + (money -
 					comedMoney *
 					10000) * rules[length][2] / 100)
 			}
@@ -207,9 +205,9 @@ function getnext(rules, money, min) {
 
 	} else {
 		if (rules[length][1] > 100) {
-			$result = lower + rules[length][1]
+			$result = number_format(lower + rules[length][1])
 		} else {
-			$result = lower + (money - comedMoney * 10000) * rules[length][1] / 100
+			$result = number_format(lower + (money - comedMoney * 10000) * rules[length][1] / 100)
 		}
 	}
 
@@ -588,46 +586,18 @@ function getlawyerfee($cityid, $typeid, $price) {
 			//*****************吉林**************
 			if ($typeid == 1 || $typeid == 3) {
 				if ($price) {
-					/*
-					10万以下（含10万），8-10%，不足5000 按5000
-					10-50万（含50万），7-9%
-					50-100万（含100万），6-8%
-					100-500万（含500万），5-7%
-					500-1000万（含1000万），4-6%
-					1000-2000万（含2000万），3-5%
-					2000-5000万（含5000万），2-4%
-					5000万元以上，1-3%
-					*/
-					if ($price <= 100000) {
-						$fee = $price * 0.08;
-						$fee1 = $price * 0.1;
-					} else if ($price <= 500000) {
-						$fee = 8000 + ($price - 100000) * 0.07;
-						$fee1 = 10000 + ($price - 100000) * 0.09;
-					} else if ($price <= 1000000) {
-						$fee = 36000 + ($price - 500000) * 0.06;
-						$fee1 = 46000 + ($price - 500000) * 0.08;
-					} else if ($price <= 5000000) {
-						$fee = 66000 + ($price - 1000000) * 0.05;
-						$fee1 = 86000 + ($price - 1000000) * 0.07;
-					} else if ($price <= 10000000) {
-						$fee = 266000 + ($price - 5000000) * 0.04;
-						$fee1 = 366000 + ($price - 5000000) * 0.06;
-					} else if ($price <= 20000000) {
-						$fee = 466000 + ($price - 10000000) * 0.03;
-						$fee1 = 666000 + ($price - 10000000) * 0.05;
-					} else {
-						$fee = 766000 + ($price - 20000000) * 0.02;
-						$fee1 = 116600 + ($price - 20000000) * 0.04;
-					}
-					if ($fee1 < 5000) {
-						$result = number_format(5000, 2, '.', '');
-					} else {
-						$result = number_format($fee, 2, '.', '') +
-							'-' + number_format($fee1, 2, '.', '');
-					}
+					let rules = [
+						[10, 8, 10],
+						[50, 7, 9],
+						[100, 6, 8],
+						[500, 5, 7],
+						[1000, 4, 6],
+						[2000, 3, 5],
+						[null, 2, 4],
+					]
+					$result = getnext(rules, $price, 0)
 				} else {
-					$result = '5000-20000';
+					$result = '';
 				}
 			} else if ($typeid == 2) {
 				$result = {
@@ -681,8 +651,8 @@ function getlawyerfee($cityid, $typeid, $price) {
 			} else if ($typeid == 2) {
 				$result = {
 					'zc': '1000-5000',
-					'sc': '500-5000',
-					'sp': '1000-20000'
+					'sc': '1000-6000',
+					'sp': '1500-12000'
 				};
 			}
 			break;
@@ -726,7 +696,7 @@ function getlawyerfee($cityid, $typeid, $price) {
 						$fee1 = 666400 + ($price - 50000000) * 0.005;
 					}
 					if ($fee == 1000 && $fee1 == 1000) {
-						$result = '大于' + number_format($fee, 2, '.', '')
+						$result = number_format($fee, 2, '.', '')
 
 					} else {
 						$result = number_format($fee, 2, '.', '') +
@@ -882,7 +852,7 @@ function getlawyerfee($cityid, $typeid, $price) {
 					]
 					$result = getnext(rules, $price, 2500)
 				} else {
-					$result = '2500';
+					$result = '';
 				}
 			} else if ($typeid == 2) {
 				$result = {
@@ -1149,7 +1119,7 @@ function getlawyerfee($cityid, $typeid, $price) {
 						[5000, 1],
 						[null, 0.5],
 					]
-					$result = getnext(rules, $price, 5000)
+					$result = getnext(rules, $price, 2000)
 
 
 					// if ($price <= 100000) {
@@ -1188,36 +1158,19 @@ function getlawyerfee($cityid, $typeid, $price) {
 			//黑龙江
 			if ($typeid == 1 || $typeid == 3) {
 				if ($price) {
-					/*
-					2万以下 800
-					2-10 4%
-					10-50 3
-					50-100 2 
-					100-500 1
-					500-1000 0.5
-					1000-5000 0.25
-					5000以上 双方协定
-					*/
-					if ($price <= 20000) {
-						$lawyerfee = 800;
-					} else if ($price <= 100000) {
-						$lawyerfee = 800 + ($price - 20000) * 0.04; // 4000
-					} else if ($price <= 500000) {
-						$lawyerfee = 4000 + ($price - 100000) * 0.03; // 16000
-					} else if ($price <= 1000000) {
-						$lawyerfee = 16000 + ($price - 500000) * 0.02; // 26000
-					} else if ($price <= 5000000) {
-						$lawyerfee = 26000 + ($price - 1000000) * 0.01; //66000
-					} else if ($price <= 10000000) {
-						$lawyerfee = 66000 + ($price - 5000000) * 0.005; // 91000
-					} else if ($price <= 50000000) {
-						$lawyerfee = 91000 + ($price - 10000000) * 0.0025; // 191000
-					} else {
-						$lawyerfee = 191000 + ($price - 100000000) * 0.002;
-					}
-					$result = number_format($lawyerfee, 2, '.', '');
+					
+					let rules = [
+						[10, 4],
+						[50, 3],
+						[100, 2],
+						[500, 1],
+						[1000, 0.5],
+						[5000, 0.25],
+						[null, 0.2],
+					]
+					$result = getnext(rules, $price, 800)
 				} else {
-					$result = '5000';
+					$result = '';
 				}
 			} else if ($typeid == 2) {
 				$result = {
@@ -1412,7 +1365,7 @@ function getlawyerfee($cityid, $typeid, $price) {
 						[1000, 1, 1.5],
 						[null, 0.5],
 					]
-					$result = getnext(rules, $price, 5000)
+					$result = getnext(rules, $price, 1000)
 				} else {
 					$result = '2000';
 				}
@@ -1685,7 +1638,7 @@ function getlawyerfee($cityid, $typeid, $price) {
 						[500, 3, 8],
 						[1000, 1.5, 6],
 						[5000, 0.75, 3],
-						[10000, 0.75, 3],
+						[10000, 0.5, 1.5],
 						[null, 0.25, 1],
 					]
 					$result = getnext(rules, $price)
